@@ -2,8 +2,7 @@ function getArrayParams(...arr) {
   let min = Infinity;
   let max = -Infinity;
   min = Math.min(...arr);
-  max = Math.max(...arr);
-  let resultSum = 0;
+  max = Math.max(...arr);  
   let sum = 0;
   if ([...arr].length != 0) {
     sum = [...arr].reduce(function(a, b) {
@@ -66,16 +65,13 @@ function averageEvenElementsWorker(...arr) {
 }
 
 function makeWork (arrOfArr, func) {
-  const [arr1, arr2, arr3, arr4] = arrOfArr;
-  let maxWorkerResult = Infinity;
-  if(arrOfArr.length != 0) {
-    for(let i = 0; i < arrOfArr.length; i++) {
-      if(func(arrOfArr[i]) > maxWorkerResult) {
-        maxWorkerResult = func(arrOfArr[i]);
-      };
-    };
-  } else {
-    return 0;
-  };     
+  let maxWorkerResult = -Infinity;
+  for(let i = 0; i < arrOfArr.length; i++) {
+    const result = func(...arrOfArr[i]);
+    if(result > maxWorkerResult) {
+      maxWorkerResult = result;
+    }
+  } 
+  return maxWorkerResult;   
 }
 

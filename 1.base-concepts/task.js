@@ -3,7 +3,7 @@ function solveEquation(a, b, c) {
   let discriminant = b ** 2 - 4 * a * c;
   let arr = [];
   if (discriminant < 0)  {
-    arr = []
+    arr = [];
   }
   else if (discriminant === 0) {
     arr[0] = -b / (2 * a);
