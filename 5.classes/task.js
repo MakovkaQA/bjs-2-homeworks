@@ -71,16 +71,6 @@ class DetectiveBook extends Book {
       } 
     }
 
-    // findBookBy(type, value) {      
-    //   for(let book of this.books) {
-    //     if(book[type] === value) {
-    //       return book;
-    //     } else {
-    //       return null
-    //     };
-    //   }     
-    // }
-
     findBookBy(type, value) {
       let result = this.books.find(book => book[type] === value);
       if(result === undefined) {
@@ -100,3 +90,46 @@ class DetectiveBook extends Book {
       return result;
     }
   }
+
+
+
+  class Student {
+    constructor(name) {
+      this.name = name;      
+      this.marks = {};
+    }   
+
+    addMark(mark, subject) {      
+      if(mark < 2 || mark > 5) {
+        return;
+      }; 
+      if(this.marks[subject] === undefined) {
+        this.marks[subject] = [];          
+      }                
+      this.marks[subject].push(mark);       
+    }
+
+    getAverageBySubject(subjectName) {      
+      if(this.marks[subjectName] != undefined) {
+        const sumOfMarks = this.marks[subjectName].reduce((acc, val) => { return acc + val});
+        return sumOfMarks / this.marks[subjectName].length;                  
+      } else {
+        return 0;
+      }               
+
+    }
+
+    getAverage() {
+      debugger
+      const arrSubject = Object.keys(this.marks);
+      if(arrSubject.length === 0) {
+        return 0;         
+      } else {         
+        let sumOfMarks = 0; 
+        for(let i = 0; i < arrSubject.length; i++) {          
+          sumOfMarks += this.getAverageBySubject(arrSubject[i]);
+        }       
+        return sumOfMarks / arrSubject.length;          
+      };  
+    }     
+  }  
